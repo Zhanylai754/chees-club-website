@@ -1,0 +1,1820 @@
+﻿<!DOCTYPE html>
+
+<!--
+===========================================================================================================
+
+	Лендинг состоит из смысловых разделов:
+	  ▸ Header
+	  ▸ Figures
+	  ▸ Board
+	  ▸ Price
+	  ▸ Time
+	  ▸ Game
+	  ▸ Gallery
+	  ▸ Tournament
+	  ▸ Blog
+	  ▸ Contacts
+
+	1. Сверстайте общий каркас страницы
+	2. Сверстайте и стилизуйте шапку страницы с навигацией
+	3. Сверстайте контейнеры смысловых секций (без наполнения)
+	4. Создайте стилевые описания для явно повторяющихся элементов (заколовки, абзацы и т.п.)
+	5. Последовательно наполните секции контентом
+	6. Разметку и стиль для раздела "Contacts" придумать самостоятельно
+
+	Для удобства уже подготовлена разметка базовых блоков страницы.
+	
+	Рекомендуется размещать общие стилевые описания в общем контейнере <style>,
+	а стилевые описния для разделов в контейнере <style> размещаемом в самом разделе.
+	В стилях используйте [id] для обозначения секций и селекторов потомственных элементов.
+
+	Используемые изображения расположены по пути в той же папке, что и эта страница.
+	Все используемые в этом тесте шрифты уже импортированы и прикреплены к странице.
+	Фамилии шрифтов, а также используемые цвета вы можете видеть на странице ui.html.
+
+	Все иконки, используемые в разметке, являются глифами шрифта "Font Awesome 6 Pro"
+
+===========================================================================================================
+
+	Фиксации для всех черновиков:
+		Черновик [Название раздела]
+
+	Фиксации для первой публикации в чистовике:
+		Выполнен [Название раздела]
+
+	Фиксации для всех правок в чистовике по рецензии:
+		Исправлен [Название раздела]
+
+=================================================================================================
+-->
+
+<html lang="ru">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+	<meta charset="utf-8" />
+	<link href="/font/awesome.css" rel="stylesheet" type="text/css" />
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			outline: none;
+		}
+
+		html, body {
+			font-family: 'Times New Roman', Times, serif;
+			font-size: 20px;
+			scroll-behavior: smooth;
+		}
+
+		html {
+			min-width: 1200px;
+			min-height: 100vh;
+			padding: 40px;
+			background-image: linear-gradient(#261f2f, #5b547f);
+			background-repeat: no-repeat;
+		}
+
+		body, .holder {
+			margin: auto
+		}
+
+		body {
+			max-width: 1440px;
+			min-height: 100%;
+			box-shadow: 0 0 2em rgba(0,0,0,0.5);
+			background-color: #fff;
+		}
+
+		ul, ol {
+			list-style: none inside
+		}
+
+		a {
+			text-decoration: none
+		}
+
+		img {
+			display: block
+		}
+
+		.big-section.white {
+			padding: 5%;
+			background-color: #fff
+		}
+
+		.big-section.black {
+			background-color: #111
+		}
+
+			.big-section.black .section-header {
+				padding: 2rem 5%
+			}
+
+			.big-section.black .section-title,
+			.big-section.black .section-header,
+			.big-section.black .section-title span {
+				background-color: #111
+			}
+
+			.big-section.black .section-title {
+				background-image: linear-gradient(to right, transparent 30%, #111 0 70%, transparent 0), linear-gradient(to top, transparent 0.75rem, #666 0 calc(0.75rem + 1px), transparent 0);
+				color: #eee;
+			}
+
+		.section-header {
+			margin-bottom: 5%
+		}
+
+		.section-title {
+			margin: auto;
+			font-size: 1.5rem;
+			font-weight: normal;
+			line-height: 1.5rem;
+			letter-spacing: 0.1em;
+			text-align: center;
+			text-transform: uppercase;
+			background-image: linear-gradient(to right, transparent 30%, white 0 70%, transparent 0), linear-gradient(to top, transparent 0.75rem, #ddd 0 calc(0.75rem + 1px), transparent 0);
+			color: #333;
+		}
+
+			.section-title:before {
+				display: block;
+				content: 'check the';
+				overflow: hidden;
+				margin: auto;
+				font-size: 0.8rem;
+				line-height: 1rem;
+				color: #9575cd;
+			}
+
+		.text {
+			text-align: justify;
+			text-align-last: center;
+			line-height: 1.4em;
+			color: #666;
+		}
+
+			.text + .text {
+				margin-top: 1em
+			}
+
+		.button {
+			display: inline-block;
+			padding: 0 1.5rem;
+			border-radius: 1rem;
+			line-height: 2rem;
+			text-align: center;
+			text-transform: lowercase;
+			text-decoration: none;
+			background-color: #9575cd;
+			color: #fff;
+			cursor: pointer;
+		}
+
+			.button:hover {
+				box-shadow: 0 0.2rem 0.5rem -0.2rem rgba(0,0,0,0.5);
+				background-color: #eee;
+				color: #9575cd;
+			}
+
+			.button:active {
+				box-shadow: none;
+				background-color: #666;
+				color: #eee;
+			}
+	</style>
+
+	<title>Chess Club</title>
+</head>
+<body>
+
+<header class="page-header">
+	<style>
+		.page-header {
+			padding: 5% 10%;
+			text-align: center;
+			background-image: url(img/top-banner.jpg);
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+		}
+
+		.page-title {
+			margin-bottom: 5%;
+			font-size: 3rem;
+			font-weight: normal;
+			text-align: center;
+			letter-spacing: 0.3em;
+			text-transform: uppercase;
+			color: #eee;
+		}
+
+		.page-navigator {
+			display: table;
+			width: 100%
+		}
+
+		.page-menu {
+			display: table-row;
+			text-align: center
+		}
+
+			.page-menu li {
+				display: table-cell;
+				width: calc(100% / 6)
+			}
+
+			.page-menu:nth-child(odd) li:nth-child(even):not(:empty),
+			.page-menu:nth-child(even) li:nth-child(odd):not(:empty) {
+				background-color: rgba(0,0,0,0.5)
+			}
+
+			.page-menu .menu-link {
+				display: block;
+				overflow: hidden;
+				padding: calc(50% - 1rem) 0;
+				line-height: 2rem;
+				letter-spacing: 0.05em;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				text-shadow: 0.05em 0.05em 0.1em rgba(0,0,0,0.2);
+				box-shadow: 0 0 0.5rem -0.2rem black;
+				color: #fff;
+			}
+
+				.page-menu .menu-link:hover {
+					background-color: rgba(255,255,255,0.5);
+					color: #000;
+				}
+	</style>
+	<h1 class="page-title">Chess Club</h1>
+	<nav class="page-navigator">
+		<ul class="page-menu">
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#">Home</a></li>
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#figures">Figures</a></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul class="page-menu">
+			<li class="menu-item"><a class="menu-link" href="#board">Board</a></li>
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#price">Price</a></li>
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#time">Time</a></li>
+			<li></li>
+		</ul>
+		<ul class="page-menu">
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#game">Game</a></li>
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#gallery">Gallery</a></li>
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#tournament">Tournament</a></li>
+		</ul>
+		<ul class="page-menu">
+			<li></li>
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#blog">Blog</a></li>
+			<li></li>
+			<li class="menu-item"><a class="menu-link" href="#contacts">Contacts</a></li>
+			<li></li>
+		</ul>
+	</nav>
+</header>
+
+<main class="page-main">
+
+<section id="figures" class="big-section white">
+	<style>
+		#figures {
+			padding: 0
+		}
+
+			#figures .holder {
+				padding: 5% 5% 0 5%
+			}
+
+			#figures .figures-image {
+				display: block;
+				width: 100%;
+				object-fit: contain;
+				object-position: center;
+			}
+
+			#figures .figures-table {
+				border-spacing: 0;
+				border-collapse: collapse;
+				font-size: 1rem;
+				text-align: left;
+				background-color: #111;
+				color: #ccc;
+			}
+
+				#figures .figures-table th,
+				#figures .figures-table td:not(.cell-figure-image) {
+					vertical-align: top
+				}
+
+				#figures .figures-table th {
+					width: calc(100% / 3)
+				}
+
+			#figures .cell-figure-image {
+				vertical-align: bottom
+			}
+
+			#figures .cell-figure-name {
+				padding: 1rem 0;
+				font-size: 1.8rem;
+				font-weight: normal;
+				text-transform: uppercase;
+				letter-spacing: 0.2em;
+				color: #fff;
+			}
+
+				#figures .cell-figure-name:before {
+					content: 'the\a';
+					font-size: 0.8rem;
+					letter-spacing: 0.15em;
+					white-space: pre-line;
+					color: #9575cd;
+				}
+
+			#figures .row-figure-name:nth-of-type(n+2) {
+				border-top: 1px solid #333
+			}
+
+			#figures .cell-figure-text {
+				padding: 1rem;
+				font-size: 0.85rem;
+				text-align: left;
+				text-align-last: left;
+				line-height: 1.4em;
+				background-image: linear-gradient(-90deg, transparent, #222);
+				color: #666;
+			}
+
+			#figures .cell-figure-image:nth-of-type(n+2) {
+				border-left: 1px solid #333
+			}
+
+			#figures .cell-figure-dimension {
+				padding: 1rem 1rem 1rem 0;
+				font-size: 0.8rem;
+				color: #999;
+			}
+
+				#figures .cell-figure-dimension:before {
+					display: block;
+					content: 'dimensions';
+					margin-bottom: 0.5rem;
+					text-transform: uppercase;
+					color: #9575cd;
+				}
+
+			#figures .figure-size {
+				margin-right: 0.5rem;
+				white-space: nowrap
+			}
+
+				#figures .figure-size:after {
+					content: ' cm'
+				}
+
+				#figures .figure-size:before {
+					color: #9575cd
+				}
+
+				#figures .figure-size.width:before {
+					content: 'W: '
+				}
+
+				#figures .figure-size.height:before {
+					content: 'H: '
+				}
+
+				#figures .figure-size.deep:before {
+					content: 'D: '
+				}
+	</style>
+	<div class="holder">
+		<header class="section-header">
+			<h2 class="section-title">Figures</h2>
+		</header>
+		<p class="text">Fusce lectus magna, facilisis at pretium eget, mollis sed sapien. Proin aliquet dolor fermentum imperdiet sagittis. Fusce purus sapien, varius non justo eu, consequat malesuada ipsum. Integer rutrum, ex ut euismod placerat, felis elit pretium libero, quis dapibus neque eros et lorem. Duis placerat est non eros accumsan, convallis cursus dolor dignissim. Pellentesque tempor velit et eros maximus, eu tincidunt nisl ultrices. Maecenas blandit lobortis eros, ac blandit libero condimentum sit amet. Suspendisse venenatis libero at erat iaculis, in scelerisque nisl hendrerit. Fusce vel maximus felis. Integer lobortis elit ut sem faucibus, a posuere erat ornare. Donec lacinia leo ut augue tincidunt, nec porttitor quam convallis. Aenean at finibus felis. Duis interdum scelerisque ligula, sed volutpat purus commodo non.</p>
+		<img class="figures-image" src="img/figures.png" alt="Шахматные фигуры" />
+	</div>
+	<table class="figures-table">
+		<tr class="row-figure-name">
+			<td class="cell-figure-image" rowspan="3"><img class="figure-image" src="img/king.png" /></td>
+			<th class="cell-figure-name">King</th>
+
+			<td class="cell-figure-image" rowspan="3"><img class="figure-image" src="img/queen.png" /></td>
+			<th class="cell-figure-name">Queen</th>
+
+			<td class="cell-figure-image" rowspan="3"><img class="figure-image" src="img/bishop.png" /></td>
+			<th class="cell-figure-name">Bishop</th>
+		</tr>
+		<tr class="row-figure-text">
+			<td class="cell-figure-text">In chess, the king is the most important piece. The object of the game is to threaten the opponent's king in such a way that escape is not possible (checkmate). If a player's king is threatened with capture, it is said to be in check, and the player must remove the threat of capture on the next move.</td>
+			<td class="cell-figure-text">The queen is the most powerful piece in the game of chess, able to move any number of squares vertically, horizontally or diagonally. Each player starts the game with one queen, placed in the middle of the first rank next to the king. Because the queen is the strongest piece, a pawn is promoted to a queen in the vast majority of cases.</td>
+			<td class="cell-figure-text">The bishop has no restrictions in distance for each move, but is limited to diagonal movement. Bishops, like all other pieces except the knight, cannot jump over other pieces. A bishop captures by occupying the square on which an enemy piece sits.</td>
+		</tr>
+		<tr class="row-figure-size">
+			<td class="cell-figure-dimension"><span class="figure-size width">2.5</span> <span class="figure-size height">6.4</span> <span class="figure-size deep">2.5</span></td>
+			<td class="cell-figure-dimension"><span class="figure-size width">2.5</span> <span class="figure-size height">5.8</span> <span class="figure-size deep">2.5</span></td>
+			<td class="cell-figure-dimension"><span class="figure-size width">2.5</span> <span class="figure-size height">5.3</span> <span class="figure-size deep">2.5</span></td>
+		</tr>
+		<tr class="row-figure-name">
+			<td class="cell-figure-image" rowspan="3"><img class="figure-image" src="img/knight.png" /></td>
+			<th class="cell-figure-name">Knight</th>
+
+			<td class="cell-figure-image" rowspan="3"><img class="figure-image" src="img/rook.png" /></td>
+			<th class="cell-figure-name">Rook</th>
+
+			<td class="cell-figure-image" rowspan="3"><img class="figure-image" src="img/pawn.png" /></td>
+			<th class="cell-figure-name">Pawn</th>
+		</tr>
+		<tr class="row-figure-text">
+			<td class="cell-figure-text">The knight is a piece in the game of chess, representing a knight. It is normally represented by a horse's head and neck. Each player starts with two knights, which begin on the row closest to the player, between the rooks and bishops. Cras et lobortis ante. Nullam at arcu eu leo porttitor congue. In posuere nisl sit amet finibus tristique.</td>
+			<td class="cell-figure-text">The rook moves horizontally or vertically, through any number of unoccupied squares (see diagram). As with captures by other pieces, the rook captures by occupying the square on which the enemy piece sits. The rook also participates, with the king, in a special move called castling.</td>
+			<td class="cell-figure-text">The pawn is the most numerous piece in the game of chess, and in most circumstances, also the weakest. It historically represents infantry, or more particularly, armed peasants or pikemen. Each player begins a game with eight pawns, one on each square of the rank immediately in front of the other pieces.</td>
+		</tr>
+		<tr class="row-figure-size">
+			<td class="cell-figure-dimension"><span class="figure-size width">2.5</span> <span class="figure-size height">4.6</span> <span class="figure-size deep">2.5</span></td>
+			<td class="cell-figure-dimension"><span class="figure-size width">2.5</span> <span class="figure-size height">4.1</span> <span class="figure-size deep">2.5</span></td>
+			<td class="cell-figure-dimension"><span class="figure-size width">2.1</span> <span class="figure-size height">3.4</span> <span class="figure-size deep">2.1</span></td>
+		</tr>
+	</table>
+</section>
+
+<section id="board" class="big-section white">
+	<style>
+		#board {
+			padding-right: 50%;
+			background-image: url(img/board.png);
+			background-repeat: no-repeat;
+			background-position: 95% center;
+			background-size: contain;
+		}
+	</style>
+	<header class="section-header">
+		<h2 class="section-title">Board</h2>
+	</header>
+	<p class="text">Nullam nisl massa, tincidunt quis convallis eget, ornare in purus. Ut nec diam scelerisque, luctus est vitae, egestas mauris. Nunc accumsan aliquet sapien, a tristique erat luctus vitae. Phasellus lobortis augue enim, in tristique nisl semper nec. Donec semper ut metus at blandit. Phasellus tempor et magna et gravida. Suspendisse aliquam, justo in ornare pulvinar, lectus orci ullamcorper enim, id tincidunt neque sapien at leo. Nullam at arcu eu leo porttitor congue. In posuere nisl sit amet finibus tristique.</p>
+	<p class="text">Vestibulum eget iaculis metus. Duis vulputate nunc id justo fermentum efficitur. In ullamcorper gravida massa. Vivamus aliquet in arcu sit amet accumsan. Ut sollicitudin nisi vitae sem ultrices mattis. Curabitur sit amet dolor eros. Proin mattis, sem et placerat bibendum, lorem erat sodales turpis, id fringilla risus sapien vel ipsum. Duis sodales, velit id mollis feugiat, nibh metus tempor purus, a aliquet urna urna at diam. Mauris sit amet dui ligula. Vivamus ultricies, sapien non malesuada gravida, nibh mi suscipit dolor, nec pellentesque turpis arcu id odio. Ut erat nisl, varius nec ante nec, eleifend consequat.</p>
+</section>
+
+<section id="price" class="big-section black">
+	<style>
+		#price {
+			padding-bottom: 5%;
+			background-image: url(img/price.jpg);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+			#price .price-table {
+				width: 90%;
+				margin: 0 auto;
+				border-spacing: 0;
+				border-collapse: collapse;
+				font-size: 1rem;
+				box-shadow: 0 0.5rem 2rem 0 black;
+				background-color: rgba(255,255,255,0.75);
+			}
+
+			#price td,
+			#price th {
+				padding: 1rem;
+				border: 1px solid rgba(255,255,255,0.3);
+				font-weight: normal;
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			#price td,
+			#price .th-plan-name {
+				color: #9575cd
+			}
+
+			#price .th-title {
+				font-size: 2rem;
+				letter-spacing: 0.1em;
+				white-space: pre-line;
+				text-align: right;
+				text-transform: uppercase;
+			}
+
+			#price .th-plan-name {
+				width: 20%;
+				font-size: 1.2rem;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+
+			#price .price-value {
+				font-size: 1.5rem
+			}
+
+				#price .price-value:before {
+					content: '£'
+				}
+
+			#price .button {
+				font-size: 0.85rem
+			}
+
+			#price .th-plan-feature {
+				font-size: 1.2rem;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+
+			#price .th-plan-text {
+				font-size: 0.85rem;
+				line-height: 1.5em;
+			}
+
+			#price .th-feature {
+				text-align: left
+			}
+	</style>
+	<header class="section-header">
+		<h2 class="section-title">Price</h2>
+	</header>
+	<table class="price-table">
+		<thead>
+			<tr>
+				<th rowspan="3" class="th-title">Chess
+Price
+Learning</th>
+				<th class="th-plan-name">Junior</th>
+				<th class="th-plan-name">Middle</th>
+				<th class="th-plan-name">Senior</th>
+			</tr>
+			<tr>
+				<th class="th-plan-price"><span class="price-value">2000</span></th>
+				<th class="th-plan-price"><span class="price-value">4000</span></th>
+				<th class="th-plan-price"><span class="price-value">6000</span></th>
+			</tr>
+			<tr>
+				<th class="th-plan-button"><span class="button">learn</span></th>
+				<th class="th-plan-button"><span class="button">learn</span></th>
+				<th class="th-plan-button"><span class="button">learn</span></th>
+			</tr>
+			<tr>
+				<th class="th-plan-feature">Feature</th>
+				<th class="th-plan-text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores</th>
+				<th class="th-plan-text">Sed ut perspiciatis unde omnis iste natus error sit laudantium, totam rem aperiam, eaque ipsa quae ab illo</th>
+				<th class="th-plan-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th class="th-feature">Lorem ipsum dolor sit amet, consectetur</th>
+				<td class="td-junior">✸</td>
+				<td class="td-middle">✸</td>
+				<td class="td-senior">✸</td>
+			</tr>
+			<tr>
+				<th class="th-feature">Consectetur adipiscing elit quis nostrum</th>
+				<td class="td-junior">✸</td>
+				<td class="td-middle">✸</td>
+				<td class="td-senior">✸</td>
+			</tr>
+			<tr>
+				<th class="th-feature">Sed do eiusmod tempor incididunt</th>
+				<td class="td-junior">✸</td>
+				<td class="td-middle">✸</td>
+				<td class="td-senior">✸</td>
+			</tr>
+			<tr>
+				<th class="th-feature">Ut enim ad minim veniam modi tempora</th>
+				<td class="td-junior"></td>
+				<td class="td-middle">✸</td>
+				<td class="td-senior">✸</td>
+			</tr>
+			<tr>
+				<th class="th-feature">Quia consequuntur magni dolores eos</th>
+				<td class="td-junior"></td>
+				<td class="td-middle">✸</td>
+				<td class="td-senior">✸</td>
+			</tr>
+			<tr>
+				<th class="th-feature">Excepteur sint occaecat cupidatat ullam</th>
+				<td class="td-junior"></td>
+				<td class="td-middle">✸</td>
+				<td class="td-senior">✸</td>
+			</tr>
+			<tr>
+				<th class="th-feature">At vero eos et accusamus et iusto odio</th>
+				<td class="td-junior"></td>
+				<td class="td-middle"></td>
+				<td class="td-senior">✸</td>
+			</tr>
+			<tr>
+				<th class="th-feature">Nam libero tempore, cum soluta nobis</th>
+				<td class="td-junior"></td>
+				<td class="td-middle"></td>
+				<td class="td-senior">✸</td>
+			</tr>
+			<tr>
+				<th class="th-feature">Temporibus autem quibusdam et aut</th>
+				<td class="td-junior"></td>
+				<td class="td-middle"></td>
+				<td class="td-senior">✸</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section id="time" class="big-section white">
+	<style>
+		#time .wrapper {
+			margin-bottom: 5%;
+			padding-left: 50%;
+			background-image: url(img/time.png);
+			background-repeat: no-repeat;
+			background-position: left center;
+			background-size: contain;
+		}
+
+		#time .tickets-table {
+			width: 100%;
+			border-spacing: 0;
+			border-collapse: collapse;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		#time tr {
+			border-top: 1px dotted #eee
+		}
+
+		#time thead tr:first-child {
+			border-top: none
+		}
+
+		#time td,
+		#time th {
+			padding: 1em 0.5em;
+			font-weight: normal;
+		}
+
+		#time th {
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+			color: #9575cd;
+		}
+
+		#time .td-tickets,
+		#time .td-status,
+		#time .td-offer,
+		#time .td-time,
+		#time .td-action {
+			border-left: 1px dotted #eee
+		}
+
+		#time thead tr:first-child .td-time {
+			background-image: linear-gradient(transparent, #f2ebff)
+		}
+
+		#time tfoot tr:last-child .td-time {
+			background-image: linear-gradient(#f2ebff, transparent)
+		}
+
+		#time tbody .td-time,
+		#time thead tr:not(:first-child) .td-time {
+			background-color: #f2ebff
+		}
+
+		#time .td-name,
+		#time .td-email {
+			text-align: left
+		}
+
+		#time .td-email {
+			padding-left: 0
+		}
+
+		#time td,
+		#time td > span,
+		#time td > span:before {
+			line-height: 2rem
+		}
+
+			#time td > span {
+				display: inline-block;
+				overflow: hidden;
+				vertical-align: middle;
+			}
+
+				#time td > span:before {
+					display: inline-block;
+					margin-right: 0.25rem;
+					font-size: 0.85rem;
+					text-align: center;
+					vertical-align: middle;
+				}
+
+		#time .td-email > span {
+			cursor: pointer
+		}
+
+			#time td > span:before,
+			#time .td-email > span:hover {
+				color: #9575cd
+			}
+
+		#time .td-status > span {
+			padding: 0 1.5rem;
+			border: 1px dotted #9575cd;
+			border-radius: 5rem;
+			cursor: default;
+		}
+	</style>
+	<div class="wrapper">
+		<header class="section-header">
+			<h2 class="section-title">Time</h2>
+		</header>
+		<p class="text">Morbi vel porttitor justo, ut pellentesque odio. Sed condimentum non sem id placerat. Vestibulum sit amet tincidunt mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse aliquet tempus ipsum, sed convallis nisl tincidunt vitae. Phasellus luctus arcu eu augue euismod, sit amet ullamcorper nibh congue. Donec sodales vestibulum est in tempus. Duis condimentum vel velit eu tristique. Aliquam aliquet, diam et blandit pharetra, erat felis elementum urna, ac sagittis est lectus ut tellus. Aenean maximus ipsum sit amet nisl facilisis placerat imperdiet vel purus. Ut risus metus, varius quis diam quis, tincidunt finibus dolor. Phasellus in dolor ac mauris egestas maximus et nec risus. Cras nec eros diam.</p>
+	</div>
+	<table class="tickets-table">
+		<thead>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="td-tickets"></td>
+				<td class="td-status"></td>
+				<td class="td-offer"></td>
+				<td class="td-time"></td>
+				<td class="td-action"></td>
+			</tr>
+			<tr>
+				<th class="td-name">Name</th>
+				<th class="td-email">E-Mail</th>
+				<th class="td-tickets">Tickets</th>
+				<th class="td-status">Status</th>
+				<th class="td-offer">Offer</th>
+				<th class="td-time">Time</th>
+				<th class="td-action">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="td-name">Adam Glick</td>
+				<td class="td-email"><span class="fas fa-envelope">glick@adam.com</span></td>
+				<td class="td-tickets"><span class="fas fa-tag">4</span></td>
+				<td class="td-status"><span>Sale</span></td>
+				<td class="td-offer"><span class="fas fa-check">Active</span></td>
+				<td class="td-time"><span class="fas fa-chess-clock-alt">14:30</span></td>
+				<td class="td-action"><span class="button">confirm</span></td>
+			</tr>
+			<tr>
+				<td class="td-name">David O'Sullivan</td>
+				<td class="td-email"><span class="fas fa-envelope">david@sullivan.com</span></td>
+				<td class="td-tickets"><span class="fas fa-tag">2</span></td>
+				<td class="td-status"><span>Sale</span></td>
+				<td class="td-offer"><span class="fas fa-check">Active</span></td>
+				<td class="td-time"><span class="fas fa-chess-clock-alt">12:00</span></td>
+				<td class="td-action"><span class="button">confirm</span></td>
+			</tr>
+			<tr>
+				<td class="td-name">Cynthia Abbat</td>
+				<td class="td-email"><span class="fas fa-envelope">cynthia@abbat.com</span></td>
+				<td class="td-tickets"><span class="fas fa-tag">6</span></td>
+				<td class="td-status"><span>Sale</span></td>
+				<td class="td-offer"><span class="fas fa-check">Active</span></td>
+				<td class="td-time"><span class="fas fa-chess-clock-alt">13:20</span></td>
+				<td class="td-action"><span class="button">confirm</span></td>
+			</tr>
+			<tr>
+				<td class="td-name">Edgar Vasquez</td>
+				<td class="td-email"><span class="fas fa-envelope">edgar@vasquez.com</span></td>
+				<td class="td-tickets"><span class="fas fa-tag">5</span></td>
+				<td class="td-status"><span>Sale</span></td>
+				<td class="td-offer"><span class="fas fa-check">Active</span></td>
+				<td class="td-time"><span class="fas fa-chess-clock-alt">15:10</span></td>
+				<td class="td-action"><span class="button">confirm</span></td>
+			</tr>
+			<tr>
+				<td class="td-name">Dane Schneider</td>
+				<td class="td-email"><span class="fas fa-envelope">dane@schneider.com</span></td>
+				<td class="td-tickets"><span class="fas fa-tag">6</span></td>
+				<td class="td-status"><span>Sale</span></td>
+				<td class="td-offer"><span class="fas fa-check">Active</span></td>
+				<td class="td-time"><span class="fas fa-chess-clock-alt">16:00</span></td>
+				<td class="td-action"><span class="button">confirm</span></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="td-tickets"></td>
+				<td class="td-status"></td>
+				<td class="td-offer"></td>
+				<td class="td-time"></td>
+				<td class="td-action"></td>
+			</tr>
+		</tfoot>
+	</table>
+</section>
+
+<section id="game" class="big-section black">
+	<style>
+		#game {
+			padding-bottom: 5%;
+			background-image: url(img/game.jpg);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+			#game .game-wrapper {
+				padding: 0 5%
+			}
+
+				#game .game-wrapper:after {
+					content: '';
+					display: block;
+					clear: both;
+				}
+
+			#game .game-left,
+			#game .game-center,
+			#game .game-right {
+				float: left
+			}
+
+			#game .game-left,
+			#game .game-right {
+				width: 20%;
+				padding-top: 1rem;
+			}
+
+			#game .game-center {
+				width: 60%
+			}
+
+			#game .game-table {
+				margin: 0 auto;
+				border: 0.5rem solid #ccc;
+				border-spacing: 0;
+				border-collapse: collapse;
+				box-shadow: 0 0 2rem black, inset 0 0 0.75rem -0.25rem black;
+				background-color: rgba(255,255,255,0.5);
+			}
+
+				#game .game-table th,
+				#game .game-table td {
+					width: 2.5rem;
+					height: 2.5rem;
+				}
+
+				#game .game-table th {
+					font-weight: normal;
+					color: #eee;
+				}
+
+				#game .game-table td {
+					background-image: url(img/sprite.png);
+					background-repeat: no-repeat;
+					background-size: 100% auto;
+					border: 1px solid #fff;
+				}
+
+				#game .game-table tr:nth-child(even) td:nth-child(even),
+				#game .game-table tr:nth-child(odd) td:nth-child(odd) {
+					background-position-y: 100%
+				}
+
+				#game .game-table td:before {
+					display: block;
+					width: 2.5rem;
+					height: 2.5rem;
+					line-height: 2.5rem;
+					font-size: 1.1rem;
+					text-align: center;
+					vertical-align: middle;
+					cursor: pointer;
+					text-shadow: 0 0 0.1em rgba(0,0,0,0.5);
+				}
+
+				#game .game-table td.fas:hover:before {
+					font-size: 1.4em;
+					text-shadow: 0 0 0.1rem rgba(0,0,0,0.25),0 0 0.4rem rgba(0,0,0,0.25);
+				}
+
+				#game .game-table td.black:before {
+					color: #000
+				}
+
+				#game .game-table td.white:before {
+					color: #fff
+				}
+
+			#game .game-right .game-part {
+				margin-left: auto;
+				text-align: right;
+			}
+
+			#game .game-part {
+				color: #ccc
+			}
+
+				#game .game-part li,
+				#game .game-part span,
+				#game .game-part span:before {
+					line-height: 2rem
+				}
+
+					#game .game-part span:before {
+						display: block;
+						float: left;
+						height: 2rem;
+						width: 2rem;
+						text-align: center;
+					}
+
+			#game .game-right .game-part span:before {
+				float: right;
+				color: #666
+			}
+
+			#game .game-part li + li {
+				border-top: 1px dotted #333
+			}
+	</style>
+	<header class="section-header">
+		<h2 class="section-title">Game</h2>
+	</header>
+	<div class="game-wrapper">
+		<div class="game-left">
+			<ul class="game-part">
+				<li><span class="fas fa-chess-pawn">e2</span>&nbsp;→&nbsp;e4</li>
+				<li><span class="fas fa-chess-knight">g1</span>&nbsp;→&nbsp;f3</li>
+				<li><span class="fas fa-chess-pawn">d2</span>&nbsp;→&nbsp;d4</li>
+				<li><span class="fas fa-chess-knight">f3</span>&nbsp;→&nbsp;xd4</li>
+				<li><span class="fas fa-chess-knight">b1</span>&nbsp;→&nbsp;c3</li>
+				<li><span class="fas fa-chess-bishop">f1</span>&nbsp;→&nbsp;e2</li>
+				<li><span class="fas fa-chess-bishop">c1</span>&nbsp;→&nbsp;e3</li>
+				<li><span class="fas fa-chess-queen">d1</span>&nbsp;→&nbsp;d2</li>
+				<li><span class="fas fa-chess-pawn">f2</span>&nbsp;→&nbsp;f3</li>
+				<li><span class="fas fa-chess-king">O</span>&nbsp;&ndash;&nbsp;O&nbsp;&ndash;&nbsp;<span class="fas fa-chess-rook">O</span></li>
+				<li><span class="fas fa-chess-knight">c3</span>&nbsp;→&nbsp;d5</li>
+				<li><span class="fas fa-chess-pawn">e4</span>&nbsp;→&nbsp;exd5</li>
+			</ul>
+		</div>
+		<figure class="game-center">
+			<table class="game-table">
+				<tr>
+					<th></th>
+					<th>a</th>
+					<th>b</th>
+					<th>c</th>
+					<th>d</th>
+					<th>e</th>
+					<th>f</th>
+					<th>g</th>
+					<th>h</th>
+					<th></th>
+				</tr>
+				<tr>
+					<th>1</th>
+					<td class="fas fa-chess-rook black"></td>
+					<td></td>
+					<td></td>
+					<td class="fas fa-chess-queen black"></td>
+					<td></td>
+					<td class="fas fa-chess-rook black"></td>
+					<td class="fas fa-chess-king black"></td>
+					<td></td>
+					<th>1</th>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="fas fa-chess-bishop black"></td>
+					<td class="fas fa-chess-pawn black"></td>
+					<td></td>
+					<td class="fas fa-chess-pawn black"></td>
+					<td class="fas fa-chess-pawn black"></td>
+					<th>2</th>
+				</tr>
+				<tr>
+					<th>3</th>
+					<td class="fas fa-chess-pawn black"></td>
+					<td></td>
+					<td></td>
+					<td class="fas fa-chess-pawn black"></td>
+					<td></td>
+					<td class="fas fa-chess-knight black"></td>
+					<td></td>
+					<td></td>
+					<th>3</th>
+				</tr>
+				<tr>
+					<th>4</th>
+					<td></td>
+					<td class="fas fa-chess-pawn black"></td>
+					<td></td>
+					<td class="fas fa-chess-pawn white"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<th>4</th>
+				</tr>
+				<tr>
+					<th>5</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="fas fa-chess-pawn white"></td>
+					<td class="fas fa-chess-knight white"></td>
+					<td></td>
+					<td class="fas fa-chess-queen white"></td>
+					<th>5</th>
+				</tr>
+				<tr>
+					<th>6</th>
+					<td class="fas fa-chess-pawn white"></td>
+					<td class="fas fa-chess-pawn white"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="fas fa-chess-pawn white"></td>
+					<td></td>
+					<th>6</th>
+				</tr>
+				<tr>
+					<th>7</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="fas fa-chess-bishop white"></td>
+					<td></td>
+					<th>7</th>
+				</tr>
+				<tr>
+					<th>8</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="fas fa-chess-rook white"></td>
+					<td class="fas fa-chess-rook white"></td>
+					<td class="fas fa-chess-king white"></td>
+					<td></td>
+					<th>8</th>
+				</tr>
+				<tr>
+					<th></th>
+					<th>a</th>
+					<th>b</th>
+					<th>c</th>
+					<th>d</th>
+					<th>e</th>
+					<th>f</th>
+					<th>g</th>
+					<th>h</th>
+					<th></th>
+				</tr>
+			</table>
+		</figure>
+		<div class="game-right">
+			<ul class="game-part">
+				<li><span class="fas fa-chess-pawn">e7</span>&nbsp;→&nbsp;e5</li>
+				<li><span class="fas fa-chess-knight">b8</span>&nbsp;→&nbsp;c6</li>
+				<li><span class="fas fa-chess-pawn">e6</span>&nbsp;→&nbsp;exd4</li>
+				<li><span class="fas fa-chess-pawn">d7</span>&nbsp;→&nbsp;d6</li>
+				<li><span class="fas fa-chess-knight">g8</span>&nbsp;→&nbsp;f6</li>
+				<li><span class="fas fa-chess-bishop">f8</span>&nbsp;→&nbsp;e7</li>
+				<li><span class="fas fa-chess-bishop">c8</span>&nbsp;→&nbsp;d7</li>
+				<li><span class="fas fa-chess-pawn">a7</span>&nbsp;→&nbsp;a6</li>
+				<li><span class="fas fa-chess-king">O</span>&nbsp;&ndash;&nbsp;<span class="fas fa-chess-rook">O</span></li>
+				<li><span class="fas fa-chess-pawn">b7</span>&nbsp;→&nbsp;b5</li>
+				<li><span class="fas fa-chess-knight">f6</span>&nbsp;→&nbsp;xd5</li>
+				<li><span class="fas fa-chess-knight">c6</span>&nbsp;→&nbsp;xd4</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section id="gallery" class="big-section white">
+	<style>
+		#gallery .gallery-list {
+			margin: 5% auto
+		}
+
+			#gallery .gallery-list:after,
+			#gallery .gallery-list li:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+		#gallery .gallery-item {
+			float: left;
+			width: calc(100% / 3);
+			padding: 2.5%;
+			border-left: 1px solid #eee;
+		}
+
+			#gallery .gallery-item:nth-child(3n+1) {
+				border-left: none
+			}
+
+			#gallery .gallery-item:nth-child(n+4) {
+				border-top: 1px solid #eee
+			}
+
+			#gallery .gallery-item:nth-child(3n+4) {
+				clear: left
+			}
+
+		#gallery .gallery-photo-wrapper {
+			filter: grayscale(70%);
+			cursor: pointer
+		}
+
+		#gallery .gallery-photo-sector {
+			width: 100%;
+			aspect-ratio: 9 / 1;
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+			box-shadow: 0 0 1em -0.5em black;
+		}
+
+			#gallery .gallery-photo-sector.a {
+				margin-left: 0;
+				background-position-y: 0
+			}
+
+			#gallery .gallery-photo-sector.b {
+				margin-left: -5%;
+				background-position-y: 20%
+			}
+
+			#gallery .gallery-photo-sector.c {
+				margin-left: 2.5%;
+				background-position-y: 40%
+			}
+
+			#gallery .gallery-photo-sector.d {
+				margin-left: 0;
+				background-position-y: 60%
+			}
+
+			#gallery .gallery-photo-sector.e {
+				margin-left: 5%;
+				background-position-y: 80%
+			}
+
+			#gallery .gallery-photo-sector.f {
+				margin-left: 0;
+				background-position-y: 100%
+			}
+
+		#gallery .gallery-photo-wrapper:hover .gallery-photo-sector {
+			margin-left: 0;
+			box-shadow: none
+		}
+
+		#gallery .gallery-photo-wrapper:hover {
+			filter: none;
+			box-shadow: 0 0.5rem 1.5rem -0.5rem rgba(0,0,0,0.75)
+		}
+
+		#gallery .gallery-photo-wrapper:active {
+			filter: none;
+			box-shadow: none
+		}
+
+		#gallery #photo-01 .gallery-photo-sector {
+			background-image: url(img/photo-01.jpg)
+		}
+
+		#gallery #photo-02 .gallery-photo-sector {
+			background-image: url(img/photo-02.jpg)
+		}
+
+		#gallery #photo-03 .gallery-photo-sector {
+			background-image: url(img/photo-03.jpg)
+		}
+
+		#gallery #photo-04 .gallery-photo-sector {
+			background-image: url(img/photo-04.jpg)
+		}
+
+		#gallery #photo-05 .gallery-photo-sector {
+			background-image: url(img/photo-05.jpg)
+		}
+
+		#gallery #photo-06 .gallery-photo-sector {
+			background-image: url(img/photo-06.jpg)
+		}
+
+		#gallery #photo-07 .gallery-photo-sector {
+			background-image: url(img/photo-07.jpg)
+		}
+
+		#gallery #photo-08 .gallery-photo-sector {
+			background-image: url(img/photo-08.jpg)
+		}
+
+		#gallery #photo-09 .gallery-photo-sector {
+			background-image: url(img/photo-09.jpg)
+		}
+	</style>
+	<header class="section-header">
+		<h2 class="section-title">Gallery</h2>
+	</header>
+	<p class="text">Aliquam viverra nibh neque, ac ultricies erat mattis nec. Suspendisse at nunc augue. Integer orci mi, fermentum sollicitudin ullamcorper ut, viverra ac sem. Curabitur semper odio risus, at ultricies purus dictum nec. Vivamus magna turpis, pretium non purus id, rutrum ultrices orci. Nam dignissim odio in lectus lacinia, sed cursus metus tempus. Mauris non est a magna varius euismod. Aliquam sodales nisi at eros finibus fermentum. Morbi libero nisl, porta id fringilla at, condimentum vitae dolor. Donec lectus massa, pharetra et molestie id, venenatis at leo. Morbi tellus augue, dapibus eu dictum eget, rutrum non neque. Quisque dui justo, maximus et laoreet a, fermentum vel purus. Sed tellus nulla, aliquet at elit ac, sollicitudin volutpat turpis. Praesent vitae quam posuere, fermentum velit ut, lacinia ligula.</p>
+
+	<ul class="gallery-list">
+		<li class="gallery-item" id="photo-01">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+		<li class="gallery-item" id="photo-02">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+		<li class="gallery-item" id="photo-03">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+		<li class="gallery-item" id="photo-04">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+		<li class="gallery-item" id="photo-05">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+		<li class="gallery-item" id="photo-06">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+		<li class="gallery-item" id="photo-07">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+		<li class="gallery-item" id="photo-08">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+		<li class="gallery-item" id="photo-09">
+			<figure class="gallery-photo-wrapper">
+				<div class="gallery-photo-sector a"></div>
+				<div class="gallery-photo-sector b"></div>
+				<div class="gallery-photo-sector c"></div>
+				<div class="gallery-photo-sector d"></div>
+				<div class="gallery-photo-sector e"></div>
+				<div class="gallery-photo-sector f"></div>
+			</figure>
+		</li>
+	</ul>
+	<p class="text">Pellentesque euismod est leo, in posuere quam gravida et. Curabitur tempor in mi nec pharetra. Nulla facilisi. Mauris a condimentum neque. Proin vitae nibh imperdiet, mollis purus ut, vulputate dolor. Integer maximus nibh sed diam lobortis mattis. Aliquam lectus augue, suscipit sit amet varius ut, pellentesque ac odio. Cras eget mi ac elit placerat scelerisque. Phasellus magna tortor, efficitur ornare velit nec, tristique volutpat nulla. Nam pharetra vitae felis sed fermentum. Suspendisse potenti. Vivamus efficitur ut eros et rhoncus. Suspendisse dolor nunc, suscipit ut eros egestas, lacinia venenatis nunc.</p>
+</section>
+
+<section id="tournament" class="big-section black">
+	<style>
+		#tournament {
+			background-image: url(img/tournament.jpg);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			text-align: center;
+			color: #999;
+		}
+
+			#tournament .grid {
+				padding: 0 5% 5% 5%
+			}
+
+			#tournament .round {
+				width: 100%;
+				margin: auto
+			}
+
+				#tournament .round:after {
+					content: '';
+					display: block;
+					clear: both;
+				}
+
+			#tournament .player {
+				float: left
+			}
+
+				#tournament .player:before {
+					content: '';
+					display: block;
+					height: 1rem;
+					width: 50%;
+					margin: 0 auto;
+					border: 1px solid #666;
+					border-top: none;
+					border-radius: 0 0 0.5rem 0.5rem;
+				}
+
+			#tournament .round:nth-of-type(1) .player {
+				width: calc(100% / 16);
+				font-size: 0.6rem;
+			}
+
+				#tournament .round:nth-of-type(1) .player:before,
+				#tournament .round:nth-of-type(1) .player-data:before {
+					display: none
+				}
+
+			#tournament .round:nth-of-type(1) .player-photo {
+				width: 80%
+			}
+
+			#tournament .round:nth-of-type(2) .player {
+				width: calc(100% / 8);
+				font-size: 0.7rem
+			}
+
+			#tournament .round:nth-of-type(2) .player-photo {
+				width: 60%
+			}
+
+			#tournament .round:nth-of-type(3) .player {
+				width: calc(100% / 4);
+				font-size: 0.8rem
+			}
+
+			#tournament .round:nth-of-type(3) .player-photo {
+				width: 45%
+			}
+
+			#tournament .round:nth-of-type(4) .player {
+				width: calc(100% / 4);
+				font-size: 0.9rem
+			}
+
+				#tournament .round:nth-of-type(4) .player:first-child {
+					margin-left: 12.5%
+				}
+
+			#tournament .round:nth-of-type(4) .player-photo {
+				width: 55%
+			}
+
+			#tournament .round:nth-of-type(4) .player:before {
+				width: 95%
+			}
+
+			#tournament .round:nth-of-type(5) .player {
+				width: 100%;
+				font-size: 1rem
+			}
+
+			#tournament .round:nth-of-type(5) .player-photo {
+				width: 70%
+			}
+
+			#tournament .player-data {
+				display: inline-block;
+				padding-bottom: 0.5rem;
+			}
+
+				#tournament .player-data:before {
+					content: '';
+					display: block;
+					height: 1rem;
+					width: 1px;
+					margin: 0 auto 0.5rem auto;
+					background-color: #666;
+				}
+
+			#tournament .player-photo {
+				display: block;
+				clear: both;
+				margin: 0 auto;
+				border-radius: 0.5rem;
+				object-fit: cover;
+				object-position: center center;
+				box-shadow: 0 0 0.2rem 0 black;
+				filter: grayscale(50%) opacity(80%);
+				cursor: pointer
+			}
+
+			#tournament .player-photo {
+			}
+
+				#tournament .player-photo:hover {
+					box-shadow: 0 0 1rem -0.25rem #fff;
+					filter: none
+				}
+
+					#tournament .player-photo:hover + .player-name {
+						color: #ccc
+					}
+
+			#tournament .player-name {
+				display: inline-block;
+				margin-top: 0.5rem;
+				letter-spacing: 0.05em;
+				line-height: 1.3em;
+			}
+
+				#tournament .player-name.fa-trophy:before {
+					display: block
+				}
+
+				#tournament .player-name.fa-trophy.gold:before {
+					color: #FFC400
+				}
+
+				#tournament .player-name.fa-trophy.silver:before {
+					color: #B0BEC5
+				}
+
+				#tournament .player-name.fa-trophy.bronze:before {
+					color: #dd6c18
+				}
+	</style>
+	<header class="section-header">
+		<h2 class="section-title">Tournament</h2>
+	</header>
+	<div class="grid">
+		<ul class="round">
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-01.jpg" alt="Magnus Carlsen" />
+					<figcaption class="player-name">Magnus<br />Carlsen</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-02.jpg" alt="Fabiano Caruana" />
+					<figcaption class="player-name">Fabiano<br />Caruana</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-03.jpg" alt="Ding Liren" />
+					<figcaption class="player-name">Ding<br />Liren</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-04.jpg" alt="Alex Grischuk" />
+					<figcaption class="player-name">Alex<br />Grischuk</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-05.jpg" alt="Ian Nepomnia" />
+					<figcaption class="player-name">Ian<br />Nepomnia</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-06.jpg" alt="Levon Aronian" />
+					<figcaption class="player-name">Levon<br />Aronian</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-07.jpg" alt="Anish Giri" />
+					<figcaption class="player-name">Anish<br />Giri</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-08.jpg" alt="Wesley Sonten" />
+					<figcaption class="player-name">Wesley<br />Sonten</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-09.jpg" alt="Teimour Radjabov" />
+					<figcaption class="player-name">Teimour<br />Radjabov</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-10.jpg" alt="Wang Haomi" />
+					<figcaption class="player-name">Wang<br />Haomi</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-11.jpg" alt="Viswanat Anand" />
+					<figcaption class="player-name">Viswanat<br />Anand</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-12.jpg" alt="Richárd Rapport" />
+					<figcaption class="player-name">Richárd<br />Rapport</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-13.jpg" alt="Leinier Domíngu" />
+					<figcaption class="player-name">Leinier<br />Domíngu</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-14.jpg" alt="Vladimir Kramnik" />
+					<figcaption class="player-name">Vladimir<br />Kramnik</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-15.jpg" alt="Sergey Karjakin" />
+					<figcaption class="player-name">Sergey<br />Karjakin</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-16.jpg" alt="Nikita Vitiugov" />
+					<figcaption class="player-name">Nikita<br />Vitiugov</figcaption>
+				</figure>
+			</li>
+		</ul>
+
+		<ul class="round">
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-01.jpg" alt="Magnus Carlsen" />
+					<figcaption class="player-name">Magnus<br />Carlsen</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-04.jpg" alt="Alex Grischuk" />
+					<figcaption class="player-name">Alex<br />Grischuk</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-06.jpg" alt="Levon Aronian" />
+					<figcaption class="player-name">Levon<br />Aronian</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-08.jpg" alt="Wesley Sonten" />
+					<figcaption class="player-name">Wesley<br />Sonten</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-09.jpg" alt="Teimour Radjabov" />
+					<figcaption class="player-name">Teimour<br />Radjabov</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-11.jpg" alt="Viswanat Anand" />
+					<figcaption class="player-name">Viswanat<br />Anand</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-14.jpg" alt="Vladimir Kramnik" />
+					<figcaption class="player-name">Vladimir<br />Kramnik</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-15.jpg" alt="Sergey Karjakin" />
+					<figcaption class="player-name">Sergey<br />Karjakin</figcaption>
+				</figure>
+			</li>
+		</ul>
+
+		<ul class="round">
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-04.jpg" alt="Alex Grischuk" />
+					<figcaption class="player-name">Alex<br />Grischuk</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-06.jpg" alt="Levon Aronian" />
+					<figcaption class="player-name">Levon<br />Aronian</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-09.jpg" alt="Teimour Radjabov" />
+					<figcaption class="player-name">Teimour<br />Radjabov</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-15.jpg" alt="Sergey Karjakin" />
+					<figcaption class="player-name">Sergey<br />Karjakin</figcaption>
+				</figure>
+			</li>
+		</ul>
+
+		<ul class="round">
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-04.jpg" alt="Alex Grischuk" />
+					<figcaption class="player-name fas fa-trophy silver">Alex<br />Grischuk</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-06.jpg" alt="Levon Aronian" />
+					<figcaption class="player-name fas fa-trophy bronze">Levon<br />Aronian</figcaption>
+				</figure>
+			</li>
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-15.jpg" alt="Sergey Karjakin" />
+					<figcaption class="player-name">Sergey<br />Karjakin</figcaption>
+				</figure>
+			</li>
+		</ul>
+
+		<ul class="round">
+			<li class="player">
+				<figure class="player-data">
+					<img class="player-photo" src="img/avatar-15.jpg" alt="Sergey Karjakin" />
+					<figcaption class="player-name fas fa-trophy gold">Sergey<br />Karjakin</figcaption>
+				</figure>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<section id="blog" class="big-section white">
+	<style>
+		#blog .blog-table {
+			font-size: 0.8rem;
+			border-spacing: 0;
+		}
+
+			#blog .blog-table td {
+				width: calc(100% / 4);
+				padding: 1rem;
+				vertical-align: top;
+			}
+
+			#blog .blog-table .post-title {
+				padding-bottom: 0;
+				font-size: 1rem;
+				font-weight: bold;
+				line-height: 1.25em;
+				color: #333;
+			}
+
+			#blog .blog-table .post-image {
+				border-bottom: 1px dotted #ccc
+			}
+
+				#blog .blog-table .post-image img {
+					width: 100%;
+					height: auto;
+					object-fit: cover;
+					object-position: center;
+				}
+
+					#blog .blog-table .post-image img:hover {
+						box-shadow: 0 0.5rem 1rem -0.25rem rgba(0,0,0,0.5)
+					}
+
+			#blog .blog-table .post-text {
+				overflow: hidden;
+				line-height: 1.25em;
+				text-align: justify;
+				color: #666;
+			}
+
+			#blog .blog-table .post-link {
+				margin-top: 1rem
+			}
+	</style>
+	<header class="section-header">
+		<h2 class="section-title">Blog</h2>
+	</header>
+	<table class="blog-table">
+		<tr>
+			<td colspan="2" class="post-title">Integer blandit nibh non sem posuere, sed rutrum ante consectetur</td>
+			<td colspan="2" class="post-title">Curabitur posuere magna sit amet ex euismod, vel lacinia justo rhoncus</td>
+		</tr>
+		<tr>
+			<td class="post-text">Nam ultrices neque vitae mauris fringilla, pretium rutrum quam pharetra. Sed ullamcorper ipsum sit amet venenatis rhoncus. Etiam commodo ac lectus eget posuere. Phasellus eu porttitor tellus, non luctus nulla. Nunc a lorem sodales, tristique enim eu, tristique lectus. Proin sodales non odio in laoreet. Vivamus id diam sed ex euismod ultrices. Nunc at lacinia mauris. Praesent vitae ante vitae lacus ullamcorper auctor nec sit amet mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi at nibh a nibh sollicitudin pellentesque</td>
+			<td class="post-image"><img src="img/photo-01.jpg" /><span class="post-link button">read more</span></td>
+			<td class="post-text">Nullam rutrum consectetur urna, quis ultrices mi. Etiam sodales nisl ut eleifend fringilla. Vivamus congue velit tortor, sit amet suscipit elit condimentum sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam vitae mi sed lacus hendrerit aliquam. Praesent sed felis eget mauris posuere hendrerit. Fusce mauris nulla, tempus sed mi vel, blandit dignissim ante. Curabitur et magna at neque lacinia efficitur eu eu magna. Praesent sed mauris id mauris ullamcorper elementum. Duis tristique erat at dui sollicitudin pulvinar</td>
+			<td class="post-image"><img src="img/photo-02.jpg" /><span class="post-link button">read more</span></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="post-title">Sed semper lacus eu quam efficitur, vel pharetra lorem euismod</td>
+			<td colspan="2" class="post-title">Nulla eget neque lacinia, consequat lacus elementum, pretium magna</td>
+		</tr>
+		<tr>
+			<td class="post-image"><img src="img/photo-03.jpg" /><span class="post-link button">read more</span></td>
+			<td class="post-text">Vivamus in augue a diam finibus sodales sit amet in ipsum. Quisque eu rutrum erat. Morbi mauris lorem, tempor ac vehicula sed, gravida non libero. Nunc erat sem, auctor eget ultricies ut, placerat vel velit. Duis venenatis placerat dignissim. Suspendisse at finibus urna, a consequat turpis. Vivamus aliquet nibh lectus, eu tincidunt sem commodo non. Mauris ac dictum ex, vitae vehicula lectus.  Donec porta tincidunt scelerisque. Proin faucibus lorem facilisis, efficitur quam in, imperdiet turpis. Fusce elementum nisi quis purus feugiat feugiat</td>
+			<td class="post-image"><img src="img/photo-04.jpg" /><span class="post-link button">read more</span></td>
+			<td class="post-text">Fusce tempus, purus ut tincidunt volutpat, enim ligula dapibus nibh, vel pretium dolor augue imperdiet dolor. Etiam sed elementum orci, et semper felis. Integer eget venenatis urna, vel sodales urna. Aenean sed pretium nunc. Vestibulum lectus metus, gravida eu nulla fringilla, molestie fermentum magna. Aliquam eleifend vel nibh ac sagittis. Morbi in lectus nisl. Proin at diam aliquam, tempus massa in, interdum est. Curabitur feugiat tellus a laoreet pharetra. Morbi quis iaculis elit. Sed ultrices vel elit at rutrum. Nam sodales nulla sit amet suscipit dignissim</td>
+		</tr>
+		<tr>
+			<td colspan="2" class="post-title">Vestibulum nec ex ac ex vehicula varius vehicula a nibh</td>
+			<td colspan="2" class="post-title">Aenean id nulla lobortis, gravida justo sed, blandit neque</td>
+		</tr>
+		<tr>
+			<td class="post-text">Phasellus metus erat, laoreet ut mi vel, laoreet molestie sapien. Aenean tincidunt ut nisl sit amet pharetra. Morbi vestibulum sapien sit amet urna bibendum vestibulum ut quis est. Praesent libero justo, ultrices sit amet arcu ac, tristique faucibus tellus. Sed sagittis turpis ac maximus finibus. Sed dictum nunc turpis, vitae pulvinar tellus cursus ut. Proin dictum turpis sed lorem lacinia, vel tempor sem bibendum. Etiam nec fermentum enim. Pellentesque sit amet turpis vel tortor viverra mollis. Nulla cursus risus vel lectus tincidunt, sit amet porta purus consequat</td>
+			<td class="post-image"><img src="img/photo-05.jpg" /><span class="post-link button">read more</span></td>
+			<td class="post-text">Curabitur eu tempor nisi, ac scelerisque diam. Sed sit amet sollicitudin velit, non volutpat diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus mattis hendrerit sapien a tempor. Donec eu ornare dui. Maecenas ut ultricies urna, sed pellentesque ipsum. Sed feugiat, nisi in venenatis pellentesque, diam velit vestibulum justo, ut lacinia massa quam vitae lacus. Quisque vitae turpis eget orci congue dictum eget non quam. Nullam convallis facilisis aliquet. Pellentesque lacinia, sem a dignissim tempus, lacus lacus pellentesque</td>
+			<td class="post-image"><img src="img/photo-06.jpg" /><span class="post-link button">read more</span></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="post-title">Donec aliquam arcu at massa iaculis, sed dignissim nulla dapibus</td>
+			<td colspan="2" class="post-title">Sed euismod lorem at turpis placerat, fringilla hendrerit purus feugiat</td>
+		</tr>
+		<tr>
+			<td class="post-image"><img src="img/photo-07.jpg" /><span class="post-link button">read more</span></td>
+			<td class="post-text">Aliquam tortor turpis, rhoncus non dictum et, scelerisque ut magna. Ut sit amet egestas tortor, id tempor tellus. Sed pellentesque faucibus sapien, vel aliquet libero faucibus eu. Phasellus sed est nec nunc venenatis condimentum. Phasellus blandit felis non tellus tincidunt tempus. Curabitur et nunc interdum, sodales augue vitae, tincidunt ligula. In vitae vestibulum turpis, vel sodales dui. Ut est nisl, convallis vitae egestas id, placerat vitae erat. Praesent id feugiat dui. Maecenas ultricies tellus vitae velit faucibus condimentum. Mauris fermentum sollicitudin odio</td>
+			<td class="post-image"><img src="img/photo-08.jpg" /><span class="post-link button">read more</span></td>
+			<td class="post-text">Etiam ut ante mauris. Fusce mi est, commodo dapibus ipsum at, convallis ullamcorper nisi. Ut fringilla metus nibh, ac placerat lectus lobortis rutrum. Quisque sit amet lectus velit. Nam viverra nisi et mauris bibendum tempor. Duis suscipit eu massa ac semper. Donec id aliquet lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque turpis enim, pharetra sollicitudin sollicitudin id, aliquet sit amet quam. Phasellus viverra imperdiet ullamcorper. Praesent accumsan mauris neque, malesuada volutpat velit varius</td>
+		</tr>
+	</table>
+</section>
+
+<section id="contacts" class="big-section black">
+	<header class="section-header">
+		<h2 class="section-title">Contacts</h2>
+	</header>
+</section>
+
+</main>
+
+</body>
+</html>
